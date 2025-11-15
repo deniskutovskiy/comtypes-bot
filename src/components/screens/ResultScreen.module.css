@@ -46,17 +46,6 @@
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--text-secondary);
-  margin-bottom: var(--space-4);
-}
-
-.descriptionText p:last-child {
-  margin-bottom: 0;
-}
-
-.descriptionText p:first-child {
-  font-weight: var(--font-medium);
-  color: var(--text-primary);
-  font-size: var(--text-xl);
 }
 
 /* ===== RETAKE BUTTON ===== */
@@ -129,7 +118,8 @@
   background: var(--color-cyan-600);
   color: white;
   transform: scale(0.97);
-  transition: transform 0.1s ease-out, background 0.1s ease-out, color 0.1s ease-out;
+  transition: transform 0.1s ease-out, background 0.1s ease-out,
+    color 0.1s ease-out;
 }
 
 .shareButton:focus-visible {
@@ -202,10 +192,6 @@
 
   .descriptionText p {
     font-size: var(--text-base);
-  }
-
-  .descriptionText p:first-child {
-    font-size: var(--text-lg);
   }
 
   .retakeButton,

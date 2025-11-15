@@ -65,28 +65,61 @@
 
 .label.top {
   top: var(--space-3);
-  left: 50%;
+  left: 30%;
   transform: translateX(-50%);
 }
 
 .label.bottom {
   bottom: var(--space-3);
-  left: 50%;
+  left: 30%;
   transform: translateX(-50%);
 }
 
 .label.left {
   left: var(--space-3);
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   text-orientation: mixed;
 }
 
 .label.right {
   right: var(--space-3);
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   text-orientation: mixed;
+}
+
+/* ===== RISK MARKS ===== */
+
+.riskDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-slate-500);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.riskLabel {
+  position: absolute;
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  color: var(--color-slate-600);
+  z-index: 3;
+  pointer-events: none;
+  padding: 2px 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.riskLabel.horizontal {
+  transform: translate(-50%, 12px); /* Ниже оси X */
+}
+
+.riskLabel.vertical {
+  transform: translate(12px, -50%); /* Правее оси Y */
 }
 
 /* ===== USER DOT ===== */
@@ -100,8 +133,9 @@
   z-index: 5;
 
   background: var(--accent-primary);
-  border: 3px solid white;
+  border: 1px solid var(--text-primary);
   border-radius: 50%;
+  opacity: 0.5;
 
   transform-origin: center;
 }
@@ -166,51 +200,5 @@
 
   .userDot {
     border-width: 4px;
-  }
-}
-
-/* ===== LEGEND ===== */
-
-.legend {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  background: var(--color-slate-50);
-  border-radius: var(--radius-md);
-}
-
-.legendItem {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--text-primary);
-}
-
-.legendDot {
-  width: 12px;
-  height: 12px;
-  background: var(--accent-primary);
-  border: 2px solid white;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--color-slate-300);
-  flex-shrink: 0;
-}
-
-.legendDescription {
-  font-size: var(--text-xs);
-  line-height: var(--leading-relaxed);
-  color: var(--text-secondary);
-}
-
-@media (max-width: 480px) {
-  .legend {
-    padding: var(--space-2);
-  }
-
-  .legendDescription {
-    font-size: 11px;
   }
 }
