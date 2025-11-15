@@ -28,14 +28,13 @@ export function ResultScreen() {
   const handleShare = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur(); // Remove focus after click
 
-    const shareText = `Мой тип коммуникации: ${result.type}\n\nПройди тест и узнай свой!`;
+    const appUrl = import.meta.env.VITE_MINI_APP_URL || window.location.href;
+    const shareText = `Я прошел тест и узнал, что мой тип коммуникации — ${result.type}!\n\nПройди тест и узнай свой!\n${appUrl}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Тест на тип коммуникации",
           text: shareText,
-          url: window.location.href,
         });
       } catch {
         // User cancelled share
@@ -44,9 +43,7 @@ export function ResultScreen() {
     } else {
       // Fallback: copy to clipboard
       try {
-        await navigator.clipboard.writeText(
-          shareText + "\n" + window.location.href
-        );
+        await navigator.clipboard.writeText(shareText);
         alert("Скопировано в буфер обмена!");
       } catch {
         alert("Не удалось скопировать");
