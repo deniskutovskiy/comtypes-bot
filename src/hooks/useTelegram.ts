@@ -5,7 +5,9 @@ export function useTelegram() {
   // SDK инициализируется один раз при старте
   useEffect(() => {
     WebApp.ready();
-    WebApp.expand(); // Разворачиваем приложение на весь экран
+    WebApp.expand();
+    WebApp.disableVerticalSwipes();
+    WebApp.requestFullscreen();
   }, []);
 
   return {
