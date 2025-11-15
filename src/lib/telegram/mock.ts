@@ -167,6 +167,13 @@ class MockWebApp implements WebApp {
   expand(): void {
     console.log("[Telegram Mock] WebApp.expand() called");
   }
+  disableVerticalSwipes(): void {
+    console.log("[Telegram Mock] WebApp.disableVerticalSwipes() called");
+  }
+
+  requestFullscreen(): void {
+    console.log("[Telegram Mock] WebApp.requestFullscreen() called");
+  }
 
   close(): void {
     console.log("[Telegram Mock] WebApp.close() called");
