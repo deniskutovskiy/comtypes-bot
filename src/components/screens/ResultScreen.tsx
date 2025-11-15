@@ -8,6 +8,7 @@ export function ResultScreen() {
   const result = useAssessmentStore((state) => state.result);
   const startAssessment = useAssessmentStore((state) => state.startAssessment);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showMap, setShowMap] = useState(false);
 
   if (!result) return null; // Защита
 
@@ -67,7 +68,25 @@ export function ResultScreen() {
           {result.type}
         </h2>
 
-        <ResultMap x={result.x} y={result.y} />
+        <div className={styles.mapSpoiler}>
+          <button
+            className={styles.mapToggleButton}
+            onClick={() => setShowMap(!showMap)}
+            aria-expanded={showMap}
+            aria-controls="map-content"
+          >
+            <span>Визуализация</span>
+            <span className={`${styles.mapToggleIcon} ${showMap ? styles.open : ""}`}>
+              ▼
+            </span>
+          </button>
+          <div
+            id="map-content"
+            className={`${styles.mapContent} ${showMap ? styles.mapContentVisible : styles.mapContentHidden}`}
+          >
+            <ResultMap x={result.x} y={result.y} />
+          </div>
+        </div>
 
         <div className={styles.descriptionText}>
           {description.split("\n").map((p, i) => (
