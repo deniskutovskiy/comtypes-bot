@@ -3,9 +3,9 @@ import styles from "./ResultMap.module.css";
 
 export function ResultMap({ x, y }: { x: number; y: number }) {
   // Нормализуем координаты. Макс: 19, Мин: -19.
-  // Нам нужно (-19..19) -> (-50%..50%)
-  const xPercent = (x / 19) * 1000;
-  const yPercent = (y / 19) * 1000;
+  // Нам нужно (-19..19) -> (-45%..45%) для отступов по краям
+  const xPercent = (x / 19) * 45;
+  const yPercent = (y / 19) * 45;
 
   // Значения рисок на осях
   const riskValues = [5, 10, 15, 20];
@@ -19,7 +19,7 @@ export function ResultMap({ x, y }: { x: number; y: number }) {
 
         {/* Риски на осях */}
         {riskValues.map((value) => {
-          const position = (value / 19) * 50; // позиция в процентах от центра
+          const position = (value / 19) * 45; // позиция в процентах от центра
           return (
             <React.Fragment key={value}>
               {/* Точка на правой оси X */}
@@ -83,7 +83,9 @@ export function ResultMap({ x, y }: { x: number; y: number }) {
         <div
           className={styles.userDot}
           style={{
-            transform: `translate(${xPercent - 65}%, ${-yPercent - 65}%)`,
+            left: `${50 + xPercent}%`,
+            top: `${50 - yPercent}%`,
+            transform: 'translate(-50%, -50%)',
           }}
         />
       </div>
