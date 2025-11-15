@@ -1,0 +1,255 @@
+/**
+ * ResultScreen Styles
+ * Result display with animated appearance
+ */
+
+.resultContainer {
+  width: 100%;
+  max-width: 900px;
+  padding: var(--space-8);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+
+  /* Animation */
+  animation: resultAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== HEADING ===== */
+
+.resultContainer h2 {
+  text-align: center;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0;
+
+  /* Animation */
+  animation: titleSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+/* ===== DESCRIPTION TEXT ===== */
+
+.descriptionText {
+  width: 100%;
+  max-width: 700px;
+  padding: var(--space-4) 0;
+
+  /* Animation */
+  animation: descriptionFade 0.5s ease-out 0.4s both;
+}
+
+.descriptionText p {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.descriptionText p:last-child {
+  margin-bottom: 0;
+}
+
+.descriptionText p:first-child {
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  font-size: var(--text-xl);
+}
+
+/* ===== RETAKE BUTTON ===== */
+
+.retakeButton {
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+
+  background: var(--color-slate-700);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+
+  cursor: pointer;
+  transition: background var(--transition-fast);
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  animation: buttonPop 0.3s ease-out 0.3s both;
+}
+
+@media (hover: hover) {
+  .retakeButton:hover {
+    background: var(--color-slate-600);
+  }
+}
+
+.retakeButton:active {
+  background: var(--color-slate-800);
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out, background 0.1s ease-out;
+}
+
+.retakeButton:focus-visible {
+  outline: 2px solid var(--color-slate-600);
+  outline-offset: 2px;
+}
+
+/* ===== SHARE BUTTON ===== */
+
+.shareButton {
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+
+  background: white;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-lg);
+
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  animation: buttonPop 0.3s ease-out 0.4s both;
+}
+
+@media (hover: hover) {
+  .shareButton:hover {
+    background: var(--accent-primary);
+    color: white;
+  }
+}
+
+.shareButton:active {
+  background: var(--color-cyan-600);
+  color: white;
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out, background 0.1s ease-out, color 0.1s ease-out;
+}
+
+.shareButton:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Button container for multiple buttons */
+.buttonGroup {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes resultAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes titleSlide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes descriptionFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes buttonPop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .resultContainer {
+    padding: var(--space-8);
+    max-width: 100%;
+  }
+
+  .resultContainer h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .descriptionText {
+    padding: var(--space-5);
+  }
+
+  .descriptionText p {
+    font-size: var(--text-base);
+  }
+
+  .descriptionText p:first-child {
+    font-size: var(--text-lg);
+  }
+
+  .retakeButton,
+  .shareButton {
+    width: 100%;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultContainer {
+    padding: var(--space-6);
+  }
+
+  .resultContainer h2 {
+    font-size: var(--text-xl);
+  }
+
+  .descriptionText {
+    padding: var(--space-4);
+  }
+
+  .retakeButton {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+  }
+
+  .shareButton {
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--text-sm);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .resultContainer,
+  .resultContainer h2,
+  .descriptionText,
+  .retakeButton,
+  .shareButton {
+    animation: none !important;
+  }
+}

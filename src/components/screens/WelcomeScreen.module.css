@@ -1,0 +1,183 @@
+/**
+ * WelcomeScreen Styles
+ * Modern glassmorphism card with gradient header
+ */
+
+.welcomeContainer {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-8);
+
+  /* Layout */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+
+  /* Animation */
+  animation: welcomeAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.welcomeContainer h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.welcomeContainer p {
+  font-size: var(--text-xl);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 450px;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.welcomeContainer button {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  padding: var(--space-3) var(--space-8);
+
+  background: var(--accent-primary);
+  color: white;
+
+  border: none;
+  border-radius: var(--radius-lg);
+
+  cursor: pointer;
+  transition: background var(--transition-fast);
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) {
+  .welcomeContainer button:hover {
+    background: var(--accent-primary-hover);
+  }
+}
+
+.welcomeContainer button:active {
+  background: var(--color-cyan-600);
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out, background 0.1s ease-out;
+}
+
+.welcomeContainer button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Instructions section */
+.instructions {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  padding: var(--space-5) var(--space-6);
+
+  /* Calm solid background */
+  background: var(--color-slate-100);
+  border-radius: var(--radius-xl);
+
+  /* Minimal shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.instructions strong {
+  display: block;
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+}
+
+.instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instructions li {
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.instructions li:last-child {
+  margin-bottom: 0;
+}
+
+.instructions li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+}
+
+/* Removed decorative card elements for cleaner look */
+
+/* Animations */
+@keyframes welcomeAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcomeContainer {
+    padding: var(--space-8);
+    max-width: 100%;
+  }
+
+  .welcomeContainer h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .welcomeContainer p {
+    font-size: var(--text-lg);
+  }
+
+  .welcomeContainer button {
+    padding: var(--space-3) var(--space-8);
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeContainer {
+    padding: var(--space-6);
+  }
+
+  .welcomeContainer h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .welcomeContainer p {
+    font-size: var(--text-base);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .welcomeContainer,
+  .welcomeContainer h1,
+  .welcomeContainer button,
+  .welcomeContainer::before {
+    animation: none;
+  }
+
+  .welcomeContainer button::before {
+    display: none;
+  }
+}

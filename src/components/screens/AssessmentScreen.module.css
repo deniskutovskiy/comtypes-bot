@@ -1,0 +1,246 @@
+/**
+ * AssessmentScreen Styles
+ * Modern question interface with progress tracking and animations
+ */
+
+.assessmentContainer {
+  width: 100%;
+  max-width: 800px;
+  padding: var(--space-8);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+
+  /* Animation */
+  animation: containerAppear 0.4s ease-out;
+  position: relative;
+}
+
+/* ===== PROGRESS BAR ===== */
+
+.progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background: var(--color-slate-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-inner);
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Removed shimmer effect for cleaner look */
+
+/* ===== QUESTION NUMBER ===== */
+
+.questionNumber {
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== QUESTION HEADER ===== */
+
+.assessmentContainer h3 {
+  text-align: center;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: var(--space-4) 0;
+
+  /* Animation */
+  animation: questionFade 0.3s ease-out;
+}
+
+/* ===== BUTTON PAIR ===== */
+
+.buttonPair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+
+  /* Animation */
+  animation: buttonsFade 0.3s ease-out;
+}
+
+.buttonPair button {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  min-height: 70px;
+
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  text-align: left;
+
+  background: white;
+  color: var(--text-primary);
+  border: 2px solid var(--color-slate-300);
+  border-radius: var(--radius-lg);
+
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) {
+  .buttonPair button:hover {
+    border-color: var(--accent-primary);
+  }
+}
+
+.buttonPair button:active {
+  background: var(--color-slate-100);
+  transform: scale(0.98);
+  transition: transform 0.1s ease-out, background 0.1s ease-out;
+}
+
+.buttonPair button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes containerAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes questionFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes buttonsFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Question transition classes (for animations between questions) */
+.questionExit {
+  animation: questionExitAnim 0.2s ease-in forwards;
+}
+
+.questionEnter {
+  animation: questionEnterAnim 0.3s ease-out forwards;
+}
+
+@keyframes questionExitAnim {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes questionEnterAnim {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .assessmentContainer {
+    padding: var(--space-6);
+    max-width: 100%;
+  }
+
+  .assessmentContainer h3 {
+    font-size: var(--text-xl);
+  }
+
+  .buttonPair button {
+    min-height: 70px;
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .assessmentContainer {
+    padding: var(--space-4);
+  }
+
+  .assessmentContainer h3 {
+    font-size: var(--text-lg);
+  }
+
+  .buttonPair button {
+    min-height: 60px;
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+/* Touch-friendly on mobile */
+@media (hover: none) and (pointer: coarse) {
+  .buttonPair button {
+    min-height: 88px; /* Apple's recommended minimum touch target */
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .assessmentContainer,
+  .assessmentContainer h3,
+  .buttonPair,
+  .buttonPair button,
+  .buttonPair button::before,
+  .progressBar,
+  .questionExit,
+  .questionEnter {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .buttonPair button {
+    border-width: 3px;
+  }
+}
+
+@media (prefers-contrast: high) and (hover: hover) {
+  .buttonPair button:hover {
+    border-color: var(--accent-primary);
+  }
+}

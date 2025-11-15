@@ -1,6 +1,8 @@
+import React, { useEffect } from "react";
 import { useTelegram } from "../../hooks/useTelegram";
 import { useAssessmentStore } from "../../store/useAssessmentStore";
 import { part1Questions, part2Questions } from "../../data/questions";
+import styles from "./AssessmentScreen.module.css";
 
 export function AssessmentScreen() {
   const { webApp } = useTelegram();
@@ -14,15 +16,38 @@ export function AssessmentScreen() {
 
   const progress = ((index + 1) / 38) * 100;
 
+  // Remove focus from buttons when question changes
+  useEffect(() => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  }, [index]);
+
+  const handleAnswer = (
+    side: "left" | "right",
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.currentTarget.blur(); // Remove focus after click
+    answerQuestion(side, webApp);
+  };
+
   return (
-    <div className="assessment-container">
-      <div className="progress-bar" style={{ width: `${progress}%` }} />
+    <div className={styles.assessmentContainer}>
+      {/* Progress bar */}
+      <div className={styles.progressBarContainer}>
+        <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+      </div>
+
+      {/* Question number */}
+      <div className={styles.questionNumber}>Вопрос {index + 1} из 38</div>
+
       <h3>Выберите одно из двух:</h3>
-      <div className="button-pair">
-        <button onClick={() => answerQuestion("left", webApp)}>
+
+      <div className={styles.buttonPair}>
+        <button onClick={(e) => handleAnswer("left", e)}>
           {currentQuestion.left}
         </button>
-        <button onClick={() => answerQuestion("right", webApp)}>
+        <button onClick={(e) => handleAnswer("right", e)}>
           {currentQuestion.right}
         </button>
       </div>

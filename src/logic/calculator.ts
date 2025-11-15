@@ -28,10 +28,10 @@ export function calculateResult(answers: {
 
   // Определение типа
   let type: keyof typeof typeDescriptions;
-  if (x > 0 && y < 0) type = "ANALYZING";
-  else if (x < 0 && y < 0) type = "DRIVING";
-  else if (x > 0 && y > 0) type = "SUPPORTING";
-  else type = "PROMOTING";
+  if (x > 0 && y < 0) type = "Анализирующий";
+  else if (x < 0 && y < 0) type = "Целенаправленный";
+  else if (x > 0 && y > 0) type = "Поддерживающий";
+  else type = "Продвигающий";
 
   return { x, y, type };
 }
