@@ -26,7 +26,7 @@ export function WelcomeScreen() {
         <ul>
           <li>
             Вам будет предложено{" "}
-            <span style={{ whiteSpace: "nowrap" }}>38 вопросов</span>
+            <span style={{ whiteSpace: "nowrap" }}>38 пар слов</span>
           </li>
           <li>Выберите один из двух вариантов</li>
           <li>

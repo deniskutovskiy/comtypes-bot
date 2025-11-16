@@ -50,7 +50,7 @@ export function AssessmentScreen() {
       </div>
 
       {/* Question number */}
-      <div className={styles.questionNumber}>Вопрос {index + 1} из 38</div>
+      <div className={styles.questionNumber}>{index + 1} из 38</div>
 
       <h3>Выберите одно из двух понятий, которое больше вас характеризует:</h3>
 
