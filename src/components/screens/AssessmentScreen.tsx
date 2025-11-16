@@ -41,7 +41,7 @@ export function AssessmentScreen() {
       {/* Question number */}
       <div className={styles.questionNumber}>Вопрос {index + 1} из 38</div>
 
-      <h3>Выберите одно из двух:</h3>
+      <h3>Выберите одно из двух понятий, которое больше вас характеризует:</h3>
 
       <div className={styles.buttonPair}>
         <button onClick={(e) => handleAnswer("left", e)}>
