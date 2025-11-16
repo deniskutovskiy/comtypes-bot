@@ -3,8 +3,8 @@
  * Automatically detects environment and provides appropriate implementation
  */
 
-import type { WebApp as WebAppType } from './types';
-import { createMockWebApp } from './mock';
+import type { WebApp as WebAppType } from "./types";
+import { createMockWebApp } from "./mock";
 
 // Extend Window interface for Telegram
 declare global {
@@ -19,7 +19,7 @@ declare global {
  * Check if running inside Telegram WebApp
  */
 function isTelegramEnvironment(): boolean {
-  return typeof window !== 'undefined' && !!window.Telegram?.WebApp;
+  return typeof window !== "undefined" && !!window.Telegram?.WebApp?.initData;
 }
 
 /**
@@ -27,11 +27,11 @@ function isTelegramEnvironment(): boolean {
  */
 function getWebApp(): WebAppType {
   if (isTelegramEnvironment()) {
-    console.log('[Telegram] Using real Telegram WebApp SDK');
+    console.log("[Telegram] Using real Telegram WebApp SDK");
     // Use real Telegram WebApp
     return window.Telegram!.WebApp;
   } else {
-    console.log('[Telegram] Telegram not detected, using mock implementation');
+    console.log("[Telegram] Telegram not detected, using mock implementation");
     // Use mock implementation
     return createMockWebApp();
   }
@@ -46,4 +46,4 @@ const WebApp = getWebApp();
 export default WebApp;
 
 // Also export types
-export type * from './types';
+export type * from "./types";
