@@ -45,20 +45,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-4);
+
+  /* Safe area insets for Telegram Mini App */
+  padding: max(var(--space-4), env(safe-area-inset-top))
+           max(var(--space-4), env(safe-area-inset-right))
+           max(var(--space-4), env(safe-area-inset-bottom))
+           max(var(--space-4), env(safe-area-inset-left));
 
   /* Disable zoom on double-tap */
   touch-action: manipulation;
+
+  /* Prevent unnecessary scrolling */
+  overflow: hidden;
 }
 
 #root {
   width: 100%;
   max-width: 1200px;
-  min-height: 100vh;
+  max-height: 100vh;
+  max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: visible;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -262,7 +272,11 @@ select:focus {
   }
 
   body {
-    padding: var(--space-2);
+    padding: max(var(--space-2), env(safe-area-inset-top))
+             max(var(--space-2), env(safe-area-inset-right))
+             max(var(--space-2), env(safe-area-inset-bottom))
+             max(var(--space-2), env(safe-area-inset-left));
+    overflow: hidden;
   }
 
   h1 {
@@ -280,7 +294,11 @@ select:focus {
 
 @media (max-width: 480px) {
   body {
-    padding: var(--space-1);
+    padding: max(var(--space-1), env(safe-area-inset-top))
+             max(var(--space-1), env(safe-area-inset-right))
+             max(var(--space-1), env(safe-area-inset-bottom))
+             max(var(--space-1), env(safe-area-inset-left));
+    overflow: hidden;
   }
 }
 
