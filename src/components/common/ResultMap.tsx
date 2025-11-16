@@ -43,7 +43,7 @@ export function ResultMap({ x, y }: { x: number; y: number }) {
                 className={`${styles.riskLabel} ${styles.horizontal}`}
                 style={{ left: `${50 - position}%`, top: "50%" }}
               >
-                {-value}
+                {value}
               </span>
 
               {/* Точка на верхней оси Y */}
@@ -67,7 +67,7 @@ export function ResultMap({ x, y }: { x: number; y: number }) {
                 className={`${styles.riskLabel} ${styles.vertical}`}
                 style={{ left: "50%", top: `${50 + position}%` }}
               >
-                {-value}
+                {value}
               </span>
             </React.Fragment>
           );
@@ -85,7 +85,7 @@ export function ResultMap({ x, y }: { x: number; y: number }) {
           style={{
             left: `${50 + xPercent}%`,
             top: `${50 - yPercent}%`,
-            transform: 'translate(-50%, -50%)',
+            transform: "translate(-50%, -50%)",
           }}
         />
       </div>
