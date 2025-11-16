@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useAssessmentStore } from "../../store/useAssessmentStore";
 import { typeDescriptions } from "../../data/descriptions";
 import { ResultMap } from "../common/ResultMap";
 import styles from "./ResultScreen.module.css";
+import html2canvas from "html2canvas";
 
 export function ResultScreen() {
   const result = useAssessmentStore((state) => state.result);
   const startAssessment = useAssessmentStore((state) => state.startAssessment);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const hiddenMapRef = useRef<HTMLDivElement>(null);
 
   if (!result) return null; // Защита
 
@@ -25,17 +27,52 @@ export function ResultScreen() {
     startAssessment();
   };
 
+  const generateMapImage = async (): Promise<File | null> => {
+    if (!hiddenMapRef.current) return null;
+
+    try {
+      const canvas = await html2canvas(hiddenMapRef.current, {
+        backgroundColor: "#ffffff",
+        scale: 2, // Higher quality
+      });
+
+      return new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const file = new File([blob], "result-map.png", { type: "image/png" });
+            resolve(file);
+          } else {
+            resolve(null);
+          }
+        }, "image/png");
+      });
+    } catch (error) {
+      console.error("Error generating map image:", error);
+      return null;
+    }
+  };
+
   const handleShare = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur(); // Remove focus after click
 
     const appUrl = import.meta.env.VITE_MINI_APP_URL || window.location.href;
     const shareText = `Я прошел тест и узнал, что мой тип коммуникации — ${result.type}!\n\nПройди тест и узнай свой!\n${appUrl}`;
 
+    // Generate map image
+    const imageFile = await generateMapImage();
+
     if (navigator.share) {
       try {
-        await navigator.share({
+        const shareData: ShareData = {
           text: shareText,
-        });
+        };
+
+        // Add image if generated and supported
+        if (imageFile && navigator.canShare && navigator.canShare({ files: [imageFile] })) {
+          shareData.files = [imageFile];
+        }
+
+        await navigator.share(shareData);
       } catch {
         // User cancelled share
         console.log("Share cancelled");
@@ -58,6 +95,19 @@ export function ResultScreen() {
 
   return (
     <>
+      {/* Hidden map for image generation */}
+      <div
+        ref={hiddenMapRef}
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "600px",
+          height: "600px",
+        }}
+      >
+        <ResultMap x={result.x} y={result.y} />
+      </div>
+
       <div className={styles.resultContainer}>
         <h2>
           <span style={{ fontSize: 16, color: "#69f" }}>Ваш тип:</span>
