@@ -55,20 +55,19 @@ body {
   /* Disable zoom on double-tap */
   touch-action: manipulation;
 
-  /* Prevent unnecessary scrolling */
-  overflow: hidden;
+  /* Allow scroll when content is taller than viewport */
+  overflow-y: auto;
 }
 
 #root {
   width: 100%;
   max-width: 1200px;
-  max-height: 100vh;
-  max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  min-height: 100vh;
+  min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: visible;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -276,7 +275,6 @@ select:focus {
              max(var(--space-2), env(safe-area-inset-right))
              max(var(--space-2), env(safe-area-inset-bottom))
              max(var(--space-2), env(safe-area-inset-left));
-    overflow: hidden;
   }
 
   h1 {
@@ -298,7 +296,6 @@ select:focus {
              max(var(--space-1), env(safe-area-inset-right))
              max(var(--space-1), env(safe-area-inset-bottom))
              max(var(--space-1), env(safe-area-inset-left));
-    overflow: hidden;
   }
 }
 
