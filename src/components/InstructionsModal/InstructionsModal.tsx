@@ -26,9 +26,9 @@ export function InstructionsModal({ isOpen, onClose }: InstructionsModalProps) {
 
         <div className={styles.instructions}>
           <ul>
-            <li>В каждом вопросе выберите один из двух вариантов</li>
+            <li>Выберите один из двух вариантов</li>
             <li>
-              Отвечайте честно, первое, что приходит{" "}
+              Отвечайте первое, что приходит{" "}
               <span style={{ whiteSpace: "nowrap" }}>в голову</span>
             </li>
           </ul>
