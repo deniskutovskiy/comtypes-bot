@@ -28,7 +28,7 @@ export function WelcomeScreen() {
             Вам будет предложено{" "}
             <span style={{ whiteSpace: "nowrap" }}>38 вопросов</span>
           </li>
-          <li>В каждом вопросе выберите один из двух вариантов</li>
+          <li>Выберите один из двух вариантов</li>
           <li>
             Отвечайте честно, первое, что приходит{" "}
             <span style={{ whiteSpace: "nowrap" }}>в голову</span>
